@@ -1,3 +1,8 @@
 # BusyGPU
 
-This toy program tries to exhaust all the CUDA resources to pretend the GPUs are busy.
+This toy program exhausts CUDA resources to pretend the GPUs are busy.
+
+```bash
+(venv)$ pip install -r requirements.txt
+(venv)$ python train-awesome-model.py  # Shh, it doesn't train anything
+```
