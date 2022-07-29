@@ -1,16 +1,15 @@
-import numpy as np
-from numba import vectorize
+from numba import cuda, vectorize
+from numpy.random import randint
 
 
 @vectorize(['int64(int64)'], target='cuda')
-def mulself(a):
-    k = 1000
-    for i in range(k):
-        a = a + a * a
-    return a
+def mul_self_forever(x):
+    y = x
+    while y is not None:
+        y = x * x
+    return y
 
 
-n = 30_000
-mat = np.arange(n * n).reshape(n, n)
-while True:
-    mulself(mat)
+n = 45_000
+mat = randint(1, size=(n, n))
+mul_self_forever(cuda.to_device(mat))
